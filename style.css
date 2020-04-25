@@ -1,0 +1,50 @@
+canvas {
+  border: 1px solid black;
+  position: absolute;
+}
+
+button {
+  position: absolute;
+  left: 560px;
+  width: 150px;
+}
+
+#nonDirected {
+  position: absolute;
+  left: 560px;
+  top: 70px;
+  border: 1px solid lightgrey;
+  border-collapse: collapse;
+  width: 230px;
+}
+
+#directed {
+  position: absolute;
+  left: 800px;
+  top: 70px;
+  border: 1px solid lightgrey;
+  border-collapse: collapse;
+  width: 230px;
+
+}
+
+#thirdTask {
+  border: 1px solid lightgrey;
+  position: absolute;
+  left: 710px;
+  border-collapse: collapse;
+}
+
+td, tr {
+  border: 1px solid lightgrey;
+  padding: 3px;
+}
+
+#main {
+  border-right: none;
+  text-align: center;
+}
+
+#mainText {
+  text-align: center;
+}
