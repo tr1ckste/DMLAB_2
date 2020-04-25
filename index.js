@@ -13,18 +13,18 @@ const ARROW_SIZE = 12;
 
 let degrees = 360 / N;
 let peaks = [];
-let FOCUS = true;
+let FOCUS = false;
 
 const MATRIX = [
   [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-  [0, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+  [0, 0, 1, 0, 1, 0, 0, 0, 1, 0],
   [0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
   [0, 0, 0, 0, 1, 1, 0, 1, 1, 0],
   [0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-  [0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
+  [0, 1, 0, 0, 0, 1, 0, 0, 1, 0],
   [0, 1, 0, 1, 1, 0, 0, 0, 1, 1]
 ];
 
@@ -49,6 +49,7 @@ const peak = (x, y, num) => {
 }
 
 const definePeaks = () => {
+  peaks = [];
   let degree = 0;
   let name = 1;
   for (let i = 0; i < N; i++) {
@@ -94,9 +95,9 @@ const drawConnection = () => {
         let fY = peaks[index].y;
         let [subX, subY] = findSubs( sX, sY, fX, fY );
         [sX, sY, fX, fY] = changeCoords( sX, sY, fX, fY, subX, subY );
-        if (checkPath(connected, i, index)  ) {
+        if (checkPath(connected, i, index) && FOCUS) {
           let halfX = sX + (fX - sX) / 2 + 30;
-          let halfY = sY + (fY - sY) / 2 + 30;
+          let halfY = sY + (fY - sY) / 2 + 30; 
           drLine(sX, sY, halfX, halfY, 0);
           drLine(halfX, halfY, fX, fY, FOCUS);
           console.log(FOCUS && checkPath(connected, i, index));
@@ -104,20 +105,19 @@ const drawConnection = () => {
           drLine(sX, sY, fX, fY, FOCUS);
         }
         connected.push([i, index]);
-        console.log(connected);
       }
     }
   }
 }
 
 const checkPath = (con, i, index) => {
-  con.forEach(el => {
-    if ( ( el[0] === i && el[1] === index ) ||
-        ( el[0] === index && el[1] === i ) ) { 
-          console.log('hi');
-          return true;
+  for (let ind = 0; ind < con.length; ind++) {
+    console.log(con[ind]);
+    if ( (con[ind][0] === i && con[ind][1] === index) ||
+         (con[ind][0] === index && con[ind][1] === i)) {
+      return true;
     }
-  });
+  }
   return false;
 }
 
