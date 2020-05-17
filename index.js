@@ -6,17 +6,11 @@ const ctx = canvas.getContext('2d');
 const CENTER_X = 275;
 const CENTER_Y = 275;
 const RADIUS = 200;
-const N = 10;
 const R = 10;
 const PI = Math.PI;
 const ARROW_SIZE = 12;
-
-let degrees = 360 / N;
-let peaks = [];
-let FOCUS = false;
-
 const MATRIX = [
-  [ 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [ 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ],
   [ 1, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
   [ 1, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
   [ 1, 0, 0, 1, 1, 0, 0, 1, 0, 0 ],
@@ -27,6 +21,13 @@ const MATRIX = [
   [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
   [ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ]
 ];
+
+const N = MATRIX.length;
+const degrees = 360 / N;
+let peaks = [];
+let FOCUS = false;
+
+console.log(N);
 
 const square = (num) => ( Math.pow( num, 2 ) );
 
@@ -112,7 +113,6 @@ const drawConnection = () => {
 
 const checkPath = (con, i, index) => {
   for (let ind = 0; ind < con.length; ind++) {
-    console.log(con[ind]);
     if ( (con[ind][0] === i && con[ind][1] === index) ||
          (con[ind][0] === index && con[ind][1] === i)) {
       return true;
